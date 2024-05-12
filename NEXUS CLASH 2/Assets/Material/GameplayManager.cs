@@ -12,6 +12,8 @@ public sealed class GameplayManager : NetworkBehaviour
 {
     public NetworkObject playerPrefab;
 
+    public TextMeshProUGUI healthtext;
+
     private SpawnPoint[] spawnPoints;
 
     public override void Spawned()
@@ -69,6 +71,11 @@ public sealed class GameplayManager : NetworkBehaviour
     {
         // We simply despawn the player object. No other cleanup is needed here.
         Runner.Despawn(player.Object);
+    }
+
+    public void UpdateHealth(int  health)
+    {
+        healthtext.text = "HEALTH: " + health;
     }
 
 }
