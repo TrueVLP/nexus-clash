@@ -11,12 +11,13 @@ public class AdjustFOV : NetworkBehaviour
 
     public override void Spawned()
     {
-        playerCamera = FindFirstObjectByType<Camera>();
 
+        playerCamera = FindFirstObjectByType<Camera>();
     }
 
     void Update()
     {
+
 
         // Wenn die rechte Maustaste gedrückt wird
         if (Input.GetMouseButtonDown(1) && HasInputAuthority)

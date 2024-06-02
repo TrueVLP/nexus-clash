@@ -29,6 +29,25 @@ public class ButtonManager : MonoBehaviour
         ChangeTextures();
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        // Erstellen Sie eine reguläre Ausdrucksmuster, das "Single", "Client x" und "Host x" entspricht,
+        // wobei x eine Zahl oder ein Buchstabe sein kann
+        string pattern = @"^(Single|Client \w+|Host \w+)$";
+
+        // Erstellen Sie eine neue Instanz von Regex mit dem Muster
+        System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(pattern);
+
+        // Durchsuchen Sie alle GameObjects in der Szene
+        foreach (GameObject gameObject in UnityEngine.Object.FindObjectsOfType<GameObject>())
+        {
+            // Überprüfen Sie, ob der Name des GameObjects dem Muster entspricht
+            if (regex.IsMatch(gameObject.name))
+            {
+                // Zerstören Sie das GameObject
+                Destroy(gameObject);
+            }
+        }
+
     }
 
     // Methode zum Deaktivieren der Buttons
@@ -82,7 +101,7 @@ public class ButtonManager : MonoBehaviour
 
         if (gameMode == 0)
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(3);
         }
         else if (gameMode == 1)
         {

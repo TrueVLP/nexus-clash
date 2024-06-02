@@ -24,6 +24,15 @@ public class PlayerHealth : NetworkBehaviour
     {
         if (HasInputAuthority)
         {
+            if(gameplayManager == null)
+            {
+                Debug.Log("Gameplay Manager is null!!");
+                gameplayManager = FindFirstObjectByType<GameplayManager>();
+            }
+            if (CurrentHealth == null)
+            {
+                Debug.Log("Current Health is null!!");
+            }
             gameplayManager.UpdateHealth(CurrentHealth);
         }
 
