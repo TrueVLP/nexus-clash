@@ -29,7 +29,7 @@ public class PlayerHealth : NetworkBehaviour
 
         if (HasStateAuthority)
         {
-            if (CurrentHealth <= 0 || transform.position.y < 30)
+            if (CurrentHealth <= 0)
             {
                 gameplayManager.RespawnPlayer(Object.StateAuthority, GetComponent<PlayerController>());
             }

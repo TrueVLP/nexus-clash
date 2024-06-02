@@ -40,10 +40,18 @@ public sealed class GameplayManager : NetworkBehaviour
 
     public void RespawnPlayer(PlayerRef playerRef, PlayerController player)
     {
-        DespawnPlayer(playerRef, player);
-        PlayerManager<PlayerController>.UpdatePlayerConnections(Runner, SpawnPlayer, DespawnPlayer);
-        SpawnPlayer(playerRef);
+        if (player != null && player.Object != null)
+        {
+            DespawnPlayer(playerRef, player);
+        }
+        else
+        {
+            Debug.LogError("Player oder Player.Object ist null! Despawn abgebrochen.");
+        }
+        // Entfernen Sie den Aufruf zur erneuten Verbindung, falls dieser Spieler nicht sofort respawned werden soll.
+        // PlayerManager<PlayerController>.UpdatePlayerConnections(Runner, SpawnPlayer, DespawnPlayer);
     }
+
 
     private void SpawnPlayer(PlayerRef playerRef)
     {
@@ -72,6 +80,7 @@ public sealed class GameplayManager : NetworkBehaviour
         // We simply despawn the player object. No other cleanup is needed here.
         Runner.Despawn(player.Object);
     }
+
 
     public void UpdateHealth(int  health)
     {
