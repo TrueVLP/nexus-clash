@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class PlayerWeapon2 : NetworkBehaviour
 {
-    public GameObject bulletPrefab; // Das ist Ihr Prefab GameObject
-    public Transform spawnPoint; // Das ist der Ort, an dem das Prefab gespawnt wird
+    public GameObject bulletPrefab; 
+    public Transform spawnPoint; 
 
     private NetworkRunner networkRunner;
 
@@ -18,9 +18,9 @@ public class PlayerWeapon2 : NetworkBehaviour
 
     private bool lastpressed = false;
 
-    public GameObject yourGameObject; // Das ist Ihr GameObject
-    public Transform originalPosition; // Das ist die ursprüngliche Position des GameObjects
-    public Transform newPosition; // Das ist die neue Position des GameObjects
+    public GameObject yourGameObject; 
+    public Transform originalPosition; 
+    public Transform newPosition;
 
     private Coroutine resetPositionCoroutine;
 
@@ -47,7 +47,6 @@ public class PlayerWeapon2 : NetworkBehaviour
                 MoveGameObjectToNewPosition();
                 Fire();
 
-                // Stop any ongoing reset coroutine to prevent immediate reset
                 if (resetPositionCoroutine != null)
                 {
                     StopCoroutine(resetPositionCoroutine);
@@ -59,7 +58,6 @@ public class PlayerWeapon2 : NetworkBehaviour
             if (lastpressed)
             {
                 lastpressed = false;
-                // Start the coroutine to reset the position after 1 second
                 resetPositionCoroutine = StartCoroutine(ResetPositionAfterDelay(1f));
             }
         }
@@ -74,7 +72,6 @@ public class PlayerWeapon2 : NetworkBehaviour
 
     private void Fire()
     {
-        // Kugel an der Position der Kamera spawnen
         Vector3 spawnPosition = spawnPoint.position;
         Quaternion spawnRotation = Quaternion.LookRotation(kcc.LookDirection);
 

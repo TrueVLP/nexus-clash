@@ -21,36 +21,27 @@ public class ButtonManager : MonoBehaviour
     public Sprite IconTexure1;
     public Sprite IconTexure2;
 
-    // Start wird vor dem ersten Frame-Aufruf einmalig aufgerufen
     void Start()
     {
-        // Deaktiviert die Buttons beim Start
         DisableSelectButtons();
         ChangeTextures();
 
         SceneManager.sceneLoaded += OnSceneLoaded;
 
-        // Erstellen Sie eine reguläre Ausdrucksmuster, das "Single", "Client x" und "Host x" entspricht,
-        // wobei x eine Zahl oder ein Buchstabe sein kann
         string pattern = @"^(Single|Client \w+|Host \w+)$";
 
-        // Erstellen Sie eine neue Instanz von Regex mit dem Muster
         System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(pattern);
 
-        // Durchsuchen Sie alle GameObjects in der Szene
         foreach (GameObject gameObject in UnityEngine.Object.FindObjectsOfType<GameObject>())
         {
-            // Überprüfen Sie, ob der Name des GameObjects dem Muster entspricht
             if (regex.IsMatch(gameObject.name))
             {
-                // Zerstören Sie das GameObject
                 Destroy(gameObject);
             }
         }
 
     }
 
-    // Methode zum Deaktivieren der Buttons
     public void DisableSelectButtons()
     {
         button1.gameObject.SetActive(false);
@@ -60,7 +51,6 @@ public class ButtonManager : MonoBehaviour
         ChangeTextures();
     }
 
-    // Methode zum Aktivieren der Buttons
     public void EnableSelectButtons()
     {
         if(button1.gameObject.active == false)
@@ -129,7 +119,6 @@ public class ButtonManager : MonoBehaviour
     {
         Debug.Log("Scene Loaded: " + scene.name);
 
-        // Suche nach allen Lichtquellen in der Szene
         Light[] lights = GameObject.FindObjectsOfType<Light>();
         if (lights.Length == 0)
         {
@@ -139,7 +128,7 @@ public class ButtonManager : MonoBehaviour
         {
             foreach (Light light in lights)
             {
-                light.enabled = true; // Aktiviere alle Lichtquellen
+                light.enabled = true; 
                 Debug.Log("Light enabled: " + light.name);
             }
         }
@@ -147,7 +136,6 @@ public class ButtonManager : MonoBehaviour
 
     void OnDestroy()
     {
-        // Entferne den Event-Handler, um Mehrfachzuweisungen zu vermeiden
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 

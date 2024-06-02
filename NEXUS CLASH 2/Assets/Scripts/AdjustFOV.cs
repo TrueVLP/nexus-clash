@@ -5,9 +5,9 @@ using UnityEngine.Networking;
 
 public class AdjustFOV : NetworkBehaviour
 {
-    public Camera playerCamera; // Die Kamera des Spielers
-    public float normalFOV = 60f; // Normales FOV
-    public float zoomedFOV = 90f; // Vergrößertes FOV
+    public Camera playerCamera;
+    public float normalFOV = 60f;
+    public float zoomedFOV = 90f;
 
     public override void Spawned()
     {
@@ -19,16 +19,12 @@ public class AdjustFOV : NetworkBehaviour
     {
 
 
-        // Wenn die rechte Maustaste gedrückt wird
         if (Input.GetMouseButtonDown(1) && HasInputAuthority)
         {
-            // Vergrößern Sie das FOV
             playerCamera.fieldOfView = zoomedFOV;
         }
-        // Wenn die rechte Maustaste losgelassen wird
         else if (Input.GetMouseButtonUp(1) && HasInputAuthority)
         {
-            // Setzen Sie das FOV auf normal zurück
             playerCamera.fieldOfView = normalFOV;
         }
     }

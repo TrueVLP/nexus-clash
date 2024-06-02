@@ -25,7 +25,6 @@ public class Bullet : NetworkBehaviour
         Log.Debug("aua");
         if (HasStateAuthority)
         {
-            // Logik für das Treffen eines Ziels
             Log.Debug("weg");
             Runner.Despawn(Object);
 
