@@ -83,8 +83,8 @@ public class PlayerWeapon2 : NetworkBehaviour
                 Bullet bullet = bulletInstance.GetComponent<Bullet>();
                 if (bullet != null)
                 {
-                    bullet.Initialize(kcc.LookDirection);
-                }
+                }                    bullet.Initialize(kcc.LookDirection);
+
             }
         }
     }
